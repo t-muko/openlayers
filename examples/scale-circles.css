@@ -1,0 +1,19 @@
+#scaleBarOptions {
+  display: none;
+}
+
+input[type=range] {
+  vertical-align: middle;
+}
+
+.ol-scale-circles  {
+  pointer-events: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  contain: layout;
+  }
+
+.ol-scale-step-text {
+  font-size: 14px;
+}
