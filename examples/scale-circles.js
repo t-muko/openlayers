@@ -5,11 +5,9 @@ import View from '../src/ol/View.js';
 import ScaleCircles from '../src/ol/control/ScaleCircles.js';
 import {ScaleLine, defaults as defaultControls} from '../src/ol/control.js';
 
-const scaleBarOptionsContainer = document.getElementById('scaleBarOptions');
+const scaleCircleOptionsContainer = document.getElementById('scaleCircleOptions');
 const unitsSelect = document.getElementById('units');
-const typeSelect = document.getElementById('type');
 const stepsRange = document.getElementById('steps');
-const scaleTextCheckbox = document.getElementById('showScaleText');
 const invertColorsCheckbox = document.getElementById('invertColors');
 
 let control;
@@ -17,13 +15,10 @@ let control;
 function scaleControl() {
   control = new ScaleCircles({
     units: unitsSelect.value,
-    bar: true,
     steps: parseInt(stepsRange.value, 10),
-    text: scaleTextCheckbox.checked,
     minWidth: 500,
   });
-  onInvertColorsChange();
-  scaleBarOptionsContainer.style.display = 'block';
+  scaleCircleOptionsContainer.style.display = 'block';
   
   return control;
 }
@@ -48,14 +43,7 @@ function reconfigureScaleLine() {
 function onChangeUnit() {
   control.setUnits(unitsSelect.value);
 }
-function onInvertColorsChange() {
-  control.element.classList.toggle(
-    'ol-scale-bar-inverted',
-    invertColorsCheckbox.checked
-  );
-}
+
 unitsSelect.addEventListener('change', onChangeUnit);
-typeSelect.addEventListener('change', reconfigureScaleLine);
 stepsRange.addEventListener('input', reconfigureScaleLine);
-scaleTextCheckbox.addEventListener('change', reconfigureScaleLine);
-invertColorsCheckbox.addEventListener('change', onInvertColorsChange);
+
